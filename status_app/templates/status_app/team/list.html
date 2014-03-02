@@ -1,0 +1,19 @@
+{% extends "status_app/theme.html" %}
+
+{% block content %}
+
+     
+             <h1>Wouldn't say I was <i>missing</i> work.</h1>
+
+        {% if teams %}
+            <ul>
+                {% for team in teams %}
+                <li><a href="/team/{{ team.id }}">{{ team.name }}</a></li>
+                {% endfor %}
+            </ul>
+
+        {% else %}
+            <strong>There are no teams present.</strong>
+        {% endif %}
+
+   {% endblock %}

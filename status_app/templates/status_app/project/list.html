@@ -1,0 +1,18 @@
+{% extends "status_app/theme.html" %}
+
+{% block content %}
+
+     
+             <h1>Going to need you to stay late this weekend.</h1>
+
+        {% if projects %}
+            <ul>
+                {% for project in projects %}
+                <li><a href="/project/{{ project.id }}">{{ project.name }}</a></li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <strong>There are no projects present.</strong>
+        {% endif %}
+
+   {% endblock %}

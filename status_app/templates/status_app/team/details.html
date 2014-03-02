@@ -1,0 +1,28 @@
+{% extends "status_app/theme.html" %}
+{% block title %}Team Detail{% endblock %}
+{% block content %}
+
+<h1>Team</h1>
+{% if team %}
+    <ul>
+        <li>ID: {{ team.id }}</li>
+        <li>Name: {{ team.name }}</li>
+        <li>People</li>
+        <ul>
+            {% for person in team.person_set.all %}
+            <li>{{person.name}}</li>
+            {% endfor %}
+        </ul>
+        <li>Projects</li>
+        <ul>
+            {% for project in team.project_set.all %}
+            <li><a href="/project/{{ project.id }}">{{ project.name }}</a></li>
+            {% endfor %}
+        </ul>
+    </ul>
+
+{% else %}
+    <p>No project matching that ID</p>
+{% endif %}
+
+{% endblock %}
