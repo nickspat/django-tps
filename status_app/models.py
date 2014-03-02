@@ -29,7 +29,7 @@ class Objective(models.Model):
 
 class Person(models.Model):
     name = models.CharField(max_length=128, unique=True)
-    publications = models.ManyToManyField(Group)
+    groups = models.ManyToManyField(Group)
 
     def __unicode__(self):
         return self.name

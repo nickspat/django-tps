@@ -1,0 +1,18 @@
+{% extends "status_app/theme.html" %}
+
+{% block content %}
+
+     
+             <h1>We're going to need you to move into the basement.</h1>
+
+        {% if people %}
+            <ul>
+                {% for person in people %}
+                <li><a href="/person/{{ person.id }}">{{ person.name }}</a></li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <strong>There are no people present.</strong>
+        {% endif %}
+
+   {% endblock %}

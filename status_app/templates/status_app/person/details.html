@@ -1,0 +1,35 @@
+{% extends "status_app/theme.html" %}
+{% block title %}Report{% endblock %}
+{% block content %}
+
+<h1>TPS People Details</h1>
+{% if person %}
+    <ul>
+        <li>ID: {{ person.id }}</li>
+        <li>Name: {{ person.name }}</li>
+        <b>Teams:</b>
+        <ul>
+
+        	{% for group in person.groups.all %}
+        	<li>{{group.name}}</li>
+            <b>Projects:</b>
+            <ul>
+                {% for project in group.project_set.all %}
+                    <li>{{project.name}}</li>
+                    <b>Objectives:</b>
+                    <ul>
+                        {% for objective in project.objective_set.all %}
+                        <li>{{objective}}</li>
+                        {% endfor %}
+                    </ul>
+                {% endfor %}
+            </ul>
+        	{% endfor %}
+        </ul>
+    </ul>
+
+{% else %}
+    <p>No project matching that ID</p>
+{% endif %}
+
+{% endblock %}
