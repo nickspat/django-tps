@@ -1,0 +1,19 @@
+{% extends "status_app/theme.html" %}
+
+{% block content %}
+
+     
+             <h1>Aww reports, what a waste of my time</h1>
+
+        {% if reports %}
+            <ul>
+                {% for report in reports %}
+                <li><a href="/reports/{{ report.id }}">{{ report.reporter }}</a></li>
+                
+                {% endfor %}
+            </ul>
+        {% else %}
+            <strong>There are no projects present.</strong>
+        {% endif %}
+
+   {% endblock %}

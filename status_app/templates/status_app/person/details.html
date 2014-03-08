@@ -10,11 +10,11 @@
         <b>Teams:</b>
         <ul>
 
-        	{% for group in person.groups.all %}
-        	<li>{{group.name}}</li>
+        	{% for team in person.teams.all %}
+        	<li>{{team.name}}</li>
             <b>Projects:</b>
             <ul>
-                {% for project in group.project_set.all %}
+                {% for project in team.project_set.all %}
                     <li>{{project.name}}</li>
                     <b>Objectives:</b>
                     <ul>

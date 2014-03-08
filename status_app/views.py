@@ -1,9 +1,8 @@
-from django.shortcuts import render
 from django.http import HttpResponse
+from django.shortcuts import render, render_to_response
 from django.template import RequestContext
-from django.shortcuts import render_to_response
+from status_app.models import Project, Objective, Team, Person, StatusReport
 
-from status_app.models import Project, Objective,Group, Person 
 
 def hello(request):
     return HttpResponse("Hello, world. You're at the project index.")
@@ -28,17 +27,30 @@ def project_detail(request, project_id):
     params={'project': project}
     return render_to_response(template, params, context)
 
+def report_list(request):
+    context = RequestContext(request)
+    report_list = StatusReport.objects.all()
+    template="status_app/reports/list.html"
+    params={'reports': report_list}
+    return render_to_response(template, params, context)
+
+def report_detail(request, statusreport_id):
+    context = RequestContext(request)
+    report = StatusReport.objects.get(id=statusreport_id)
+    template="status_app/reports/details.html"
+    params={'report': report}
+    return render_to_response(template, params, context)
 
 def team_list(request):
     context = RequestContext(request)
-    team_list = Group.objects.all()
+    team_list = Team.objects.all()
     template="status_app/team/list.html"
     params={'teams': team_list}
     return render_to_response(template, params, context)
 
 def team_detail(request, team_id):
     context = RequestContext(request)
-    team = Group.objects.get(id=team_id)
+    team = Team.objects.get(id=team_id)
     template="status_app/team/details.html"
     params={'team': team}
     return render_to_response(template, params, context)

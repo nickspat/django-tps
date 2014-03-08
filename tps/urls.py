@@ -13,6 +13,7 @@ urlpatterns = patterns('',
     url(r'^project/', include('status_app.urls-project')),
     url(r'^team/', include('status_app.urls-team')),
     url(r'^person/', include('status_app.urls-person')),
+    url(r'^reports/', include('status_app.urls-report')),
 	#url(r'^$', RedirectView.as_view(url='/project', permanent=False), name='index')
  	url(r'^$', 'status_app.views.index', name='home')
 
