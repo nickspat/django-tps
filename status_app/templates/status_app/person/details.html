@@ -7,11 +7,38 @@
     <ul>
         <li>ID: {{ person.id }}</li>
         <li>Name: {{ person.name }}</li>
+        <li>Manager: <a href="/person/{{ person.manager.id }}">{{ person.manager.name }}</a></li>
+        <li>Direct Reports:</li>
+
+            <ul>
+            {% for report in person.direct_reports.all %}
+                <li><a href="/person/{{ report.id }}">{{report.name}}</a></li>
+            {% endfor %}
+            </ul>
+
+        <li>Status Reports:</li>
+
+            <ul>
+            --<br>
+            My statuses <a href="/person/status/new">New status</a><br>
+            {% for status in person.status_reports.all %}
+                <li>Title:<a href="/person/status/{{ status.id }}">{{status.title}}</a>|Summary:{{status.status}}</li>
+            {% endfor %}
+            --<br>
+            My direct report statuses<br>
+            {% for report in person.direct_reports.all %}
+            {% for status in report.status_reports.all %}
+                <li>Title:<a href="/person/status/{{ status.id }}">{{status.title}}</a>|Summary:{{status.status}}</li>
+            {% endfor %}
+            {% endfor %}
+            </ul>
+
+        
         <b>Teams:</b>
         <ul>
 
         	{% for team in person.teams.all %}
-        	<li>{{team.name}}</li>
+        	<li><a href="/team/{{ team.id }}">{{team.name}}</a></li>
             <b>Projects:</b>
             <ul>
                 {% for project in team.project_set.all %}
@@ -19,7 +46,7 @@
                     <b>Objectives:</b>
                     <ul>
                         {% for objective in project.objective_set.all %}
-                        <li>{{objective}}</li>
+                        <li>{{objective}} - {{objective.status}}</li>
                         {% endfor %}
                     </ul>
                 {% endfor %}

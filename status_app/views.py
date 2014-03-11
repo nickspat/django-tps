@@ -1,6 +1,9 @@
+from django.core.urlresolvers import reverse_lazy
 from django.http import HttpResponse
 from django.shortcuts import render, render_to_response
 from django.template import RequestContext
+from django.views.generic import TemplateView, ListView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from status_app.models import Project, Objective, Team, Person, StatusReport
 
 
@@ -70,5 +73,102 @@ def person_detail(request, person_id):
     params={'person': person}
     return render_to_response(template, params, context)
 
+class PersonList(ListView):
+    model = Person
+    template_name = 'status_app/person/list.html'
+
+class PersonCreate(CreateView):
+    model = Person
+    template_name = 'status_app/person/form.html'
+    success_url = reverse_lazy('person_list')
+
+class PersonUpdate(UpdateView):
+    model = Person
+    template_name = 'status_app/person/form.html'
+    success_url = reverse_lazy('person_list')
+
+class PersonDelete(DeleteView):
+    model = Person
+    template_name = 'status_app/person/confirm_delete.html'
+    success_url = reverse_lazy('person_list')
+
+
+def status_detail(request, status_id):
+    context = RequestContext(request)
+    status = StatusReport.objects.get(id=status_id)
+    template="status_app/person/status_details.html"
+    params={'status': status}
+    return render_to_response(template, params, context)
+
+class StatusList(ListView):
+    model = StatusReport
+    template_name = 'status_app/person/status_list.html'
+
+class StatusCreate(CreateView):
+    model = StatusReport
+    template_name = 'status_app/person/status_form.html'
+    success_url = reverse_lazy('person_list')
+
+class StatusUpdate(UpdateView):
+    model = StatusReport
+    template_name = 'status_app/person/status_form.html'
+    success_url = reverse_lazy('person_list')
+
+class StatusDelete(DeleteView):
+    model = StatusReport
+    template_name = 'status_app/person/confirm_delete.html'
+    success_url = reverse_lazy('person_list')
+
+
+
+
+
+class ProjectCreate(CreateView):
+    model = Project
+    template_name = 'status_app/project/form.html'
+    success_url = reverse_lazy('project_list')
+
+class ProjectUpdate(UpdateView):
+    model = Project
+    template_name = 'status_app/project/form.html'
+    success_url = reverse_lazy('project_list')
+
+class ProjectDelete(DeleteView):
+    model = Project
+    template_name = 'status_app/project/confirm_delete.html'
+    success_url = reverse_lazy('project_list')
+
+
+
+class ObjectiveCreate(CreateView):
+    model = Objective
+    template_name = 'status_app/project/objective_form.html'
+    success_url = reverse_lazy('project_list')
+
+class ObjectiveUpdate(UpdateView):
+    model = Objective
+    template_name = 'status_app/project/objective_form.html'
+    success_url = reverse_lazy('project_list')
+
+class ObjectiveDelete(DeleteView):
+    model = Objective
+    template_name = 'status_app/project/confirm_delete.html'
+    success_url = reverse_lazy('project_list')
+
+
+class TeamCreate(CreateView):
+    model = Team
+    template_name = 'status_app/team/form.html'
+    success_url = reverse_lazy('team_list')
+
+class TeamUpdate(UpdateView):
+    model = Team
+    template_name = 'status_app/team/form.html'
+    success_url = reverse_lazy('team_list')
+
+class TeamDelete(DeleteView):
+    model = Team
+    template_name = 'status_app/team/confirm_delete.html'
+    success_url = reverse_lazy('team_list')
 
 

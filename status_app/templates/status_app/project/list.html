@@ -5,10 +5,13 @@
      
              <h1>He took my red stapler</h1>
 
+      <a href="/project/new">New Project</a>
         {% if projects %}
             <ul>
                 {% for project in projects %}
-                <li><a href="/project/{{ project.id }}">{{ project.name }}</a></li>
+                 <li>[<a href="/project/{{ project.id }}">view</a>]
+                    [<a href="/project/edit/{{ project.id }}">edit</a>]
+                    [<a href="/project/delete/{{ project.id }}">delete</a>] {{ project.name }}</li>
                 {% endfor %}
             </ul>
         {% else %}

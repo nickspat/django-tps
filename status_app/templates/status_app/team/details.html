@@ -10,7 +10,7 @@
         <li>People</li>
         <ul>
             {% for person in team.person_set.all %}
-            <li>{{person.name}}</li>
+            <li><a href="/person/{{ person.id }}">{{person.name}}</a></li>
             {% endfor %}
         </ul>
         <li>Projects</li>

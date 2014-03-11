@@ -1,0 +1,19 @@
+{% extends "status_app/theme.html" %}
+{% block title %}Report{% endblock %}
+{% block content %}
+
+<h1>TPS Report</h1>
+
+{% if objective %}
+    <ul>
+        <li>ID: {{ objective.id }}</li>
+        <li>Name: {{ objective.name }}</li>
+        <li>Status: {{ objective.status }}</li>
+
+    </ul>
+
+{% else %}
+    <p>No project matching that ID</p>
+{% endif %}
+
+{% endblock %}

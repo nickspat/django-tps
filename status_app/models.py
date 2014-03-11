@@ -3,6 +3,7 @@ from django.db import models
 class Person(models.Model):
     name = models.CharField(max_length=128, unique=True)    
     corpid = models.CharField(max_length=10)    
+    manager = models.ForeignKey('self', blank=True, null=True, related_name='direct_reports')
     def __unicode__(self):
         return self.name
 
@@ -48,8 +49,9 @@ class Objective(models.Model):
 
 
 class StatusReport(models.Model):
-    reporter = models.ForeignKey(Person)
-    status_message = models.CharField(max_length=10000)
+    author = models.ForeignKey(Person, related_name='status_reports')
+    status = models.CharField(max_length=10000)
+    title = models.CharField(max_length=128)
     project = models.CharField(max_length=100, null=True,blank=True)
     start_date = models.DateField()
     due_date = models.DateField()

@@ -5,10 +5,13 @@
      
              <h1>We're going to need you to move into the basement.</h1>
 
-        {% if people %}
+        <a href="/person/new">New Person</a>
+        {% if object_list %}
             <ul>
-                {% for person in people %}
-                <li><a href="/person/{{ person.id }}">{{ person.name }}</a></li>
+                {% for person in object_list  %}
+                <li>[<a href="/person/{{ person.id }}">view</a>]
+                    [<a href="/person/edit/{{ person.id }}">edit</a>]
+                    [<a href="/person/delete/{{ person.id }}">delete</a>] {{ person.name }}</li>
                 {% endfor %}
             </ul>
         {% else %}

@@ -5,10 +5,13 @@
      
              <h1>Wouldn't say I was <i>missing</i> work.</h1>
 
+       <a href="/team/new">New Team</a>
         {% if teams %}
             <ul>
                 {% for team in teams %}
-                <li><a href="/team/{{ team.id }}">{{ team.name }}</a></li>
+                <li>[<a href="/team/{{ team.id }}">view</a>]
+                    [<a href="/team/edit/{{ team.id }}">edit</a>]
+                    [<a href="/team/delete/{{ team.id }}">delete</a>] {{ team.name }}</li>
                 {% endfor %}
             </ul>
 
